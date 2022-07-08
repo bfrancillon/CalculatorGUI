@@ -29,6 +29,8 @@ public:
 	wxButton* m_btn18 = nullptr;
 	wxButton* m_btn19 = nullptr;
 	wxButton* m_btn20 = nullptr;
+	wxButton* m_btn21 = nullptr;
+
 
 	wxTextCtrl* m_txt1 = nullptr;
 	//wxListBox *m_list1 = nullptr;
