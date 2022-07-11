@@ -1,4 +1,5 @@
 #include "Main.h"
+#include "ButtonFactory.h"
 
 wxBEGIN_EVENT_TABLE(Main, wxFrame)
 EVT_BUTTON(1001,Main::OnButtonClicked)
@@ -79,7 +80,8 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 		m_txt1->AppendText("BIN");
 		break;
 	case 1004:
-		m_txt1->AppendText("CE");
+		//m_txt1->AppendText("CE");
+		m_txt1->Clear();
 			break;
 	case 1005:
 		m_txt1->AppendText("+-");
