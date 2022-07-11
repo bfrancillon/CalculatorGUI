@@ -35,7 +35,8 @@ public:
 	wxTextCtrl* m_txt1 = nullptr;
 	//wxListBox *m_list1 = nullptr;
 
-	void OnButtonClicked(wxCommandEvent& event);
+	void OnButtonClicked(wxCommandEvent& event); 
+	void BindButton(wxButton* button);
 
 	wxDECLARE_EVENT_TABLE();
 };
