@@ -79,7 +79,8 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 		m_txt1->AppendText("BIN");
 		break;
 	case 1004:
-		m_txt1->AppendText("CE");
+		//m_txt1->AppendText("CE");
+		m_txt1->Clear();
 			break;
 	case 1005:
 		m_txt1->AppendText("+-");
