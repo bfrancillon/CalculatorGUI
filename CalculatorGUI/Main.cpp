@@ -30,33 +30,32 @@ wxEND_EVENT_TABLE()
 Main::Main() : wxFrame(nullptr, wxID_ANY," BF Calculator", wxPoint(30, 30), wxSize(630, 450))
 {
 	m_txt1 = new wxTextCtrl(this, wxID_ANY, " ", wxPoint(10, 10), wxSize(620, 70));
-	m_btn1 = new wxButton(this, 1001, "DEC", wxPoint(10, 90), wxSize(120, 50));
-	m_btn2 = new wxButton(this, 1002, "HEX", wxPoint(130, 90), wxSize(120, 50));
-	m_btn3 = new wxButton(this, 1003, "BIN", wxPoint(250, 90), wxSize(120, 50));
-	m_btn4 = new wxButton(this, 1004, "CE", wxPoint(370, 90), wxSize(120, 50));
-	m_btn5 = new wxButton(this, 1005, "+-", wxPoint(490, 90), wxSize(120, 50));
+	m_btn1 = ButtonFactory::m_btn1(this);
+	m_btn2 = ButtonFactory::m_btn2(this);
+	m_btn3 = ButtonFactory::m_btn3(this);
+	m_btn4 = ButtonFactory::m_btn4(this);
+	m_btn5 = ButtonFactory::m_btn5(this);
 
 
-	m_btn6 = new wxButton(this, 1006, "7", wxPoint(10, 150), wxSize(150, 60));
-	m_btn7 = new wxButton(this, 1007, "8", wxPoint(160, 150), wxSize(150, 60));
-	m_btn8 = new wxButton(this, 1008, "9", wxPoint(310, 150), wxSize(150, 60));
-	m_btn9 = new wxButton(this, 1009, "+", wxPoint(460, 150), wxSize(150, 60));
+	m_btn6 = ButtonFactory::m_btn6(this);
+	m_btn7 = ButtonFactory::m_btn7(this);
+	m_btn8 = ButtonFactory::m_btn8(this);
+	m_btn9 = ButtonFactory::m_btn9(this);
 
-	m_btn10 = new wxButton(this, 10010, "4", wxPoint(10, 216), wxSize(150, 60));
-	m_btn11 = new wxButton(this, 10011, "5", wxPoint(160, 216), wxSize(150, 60));
-	m_btn12 = new wxButton(this, 10012, "6", wxPoint(310, 216), wxSize(150, 60));
-	m_btn13 = new wxButton(this, 10013, "-", wxPoint(460, 216), wxSize(150, 60));
+	m_btn10 = ButtonFactory::m_btn10(this);
+	m_btn11 = ButtonFactory::m_btn11(this);
+	m_btn12 = ButtonFactory::m_btn12(this);
+	m_btn13 = ButtonFactory::m_btn13(this);
 
-	m_btn14 = new wxButton(this, 10014, "1", wxPoint(10, 283), wxSize(150, 60));
-	m_btn15 = new wxButton(this, 10015, "2", wxPoint(160, 283), wxSize(150, 60));
-	m_btn16 = new wxButton(this, 10016, "3", wxPoint(310, 283), wxSize(150, 60));
-	m_btn17 = new wxButton(this, 10017, "*", wxPoint(460, 283), wxSize(150, 60));
+	m_btn14 = ButtonFactory::m_btn14(this);
+	m_btn15 = ButtonFactory::m_btn15(this);
+	m_btn16 = ButtonFactory::m_btn16(this);
+	m_btn17 = ButtonFactory::m_btn17(this);
 
-	m_btn18 = new wxButton(this, 10018, "0", wxPoint(10, 350), wxSize(150, 60));
-	m_btn19 = new wxButton(this, 10019, "%", wxPoint(160, 350), wxSize(150, 60));
-	m_btn20 = new wxButton(this, 10020, "=", wxPoint(310, 350), wxSize(150, 60));
-	m_btn21 = new wxButton(this, 10021, "/", wxPoint(460, 350), wxSize(150, 60));
-
+	m_btn17 = ButtonFactory::m_btn18(this);
+	m_btn19 = ButtonFactory::m_btn19(this);
+	m_btn20 = ButtonFactory::m_btn20(this);
+	m_btn21 = ButtonFactory::m_btn21(this);
 
 }
 
@@ -66,6 +65,7 @@ Main::~Main()
 
 void Main::OnButtonClicked(wxCommandEvent& event)
 {
+	
 	int id = event.GetId();
 	switch (id)
 	{
@@ -141,9 +141,15 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	case 10021:
 		m_txt1->AppendText("/");
 		break;
-	
+
 	}
+	
 	event.Skip();
 
 
+}
+
+void Main::BindButton(wxButton* button)
+{
+	button->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &Main::OnButtonClicked, this);
 }
