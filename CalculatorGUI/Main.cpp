@@ -300,8 +300,6 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	}
 	
 	event.Skip();
-
-
 }
 
 void Main::BindButton(wxButton* button)
