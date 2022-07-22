@@ -1,5 +1,6 @@
 #pragma once
 #include "wx/wx.h"
+#include "CalculatorPocessor.h"
 
 
 class Main : public wxFrame
@@ -7,6 +8,7 @@ class Main : public wxFrame
 public:
 	Main();
 	~Main();
+
 
 public:
 	wxButton* m_btn1 = nullptr;
@@ -37,7 +39,7 @@ public:
 
 	void OnButtonClicked(wxCommandEvent& event); 
 	void BindButton(wxButton* button);
-
+	void Solve();
 	wxDECLARE_EVENT_TABLE();
 };
 

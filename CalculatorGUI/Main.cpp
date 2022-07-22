@@ -1,8 +1,10 @@
 #include "Main.h"
 #include "ButtonFactory.h"
+#include "CalculatorPocessor.h"
+#include "wx/wx.h"
 
 wxBEGIN_EVENT_TABLE(Main, wxFrame)
-EVT_BUTTON(1001,Main::OnButtonClicked)
+EVT_BUTTON(1001, Main::OnButtonClicked)
 EVT_BUTTON(1002, Main::OnButtonClicked)
 EVT_BUTTON(1003, Main::OnButtonClicked)
 EVT_BUTTON(1004, Main::OnButtonClicked)
@@ -26,9 +28,21 @@ EVT_BUTTON(10021, Main::OnButtonClicked)
 
 
 wxEND_EVENT_TABLE()
+char sym;
+float num1 = 0;
+float num2 = 0;
+bool solve = false;
+float results = 0;
+std::string result = " ";
+char store = ' ';
+
+
+CalculatorPocessor* processor = CalculatorPocessor::GetInstance();
+
 
 Main::Main() : wxFrame(nullptr, wxID_ANY," BF Calculator", wxPoint(30, 30), wxSize(630, 450))
 {
+
 	m_txt1 = new wxTextCtrl(this, wxID_ANY, " ", wxPoint(10, 10), wxSize(620, 70));
 	m_btn1 = ButtonFactory::m_btn1(this);
 	m_btn2 = ButtonFactory::m_btn2(this);
@@ -56,7 +70,6 @@ Main::Main() : wxFrame(nullptr, wxID_ANY," BF Calculator", wxPoint(30, 30), wxSi
 	m_btn19 = ButtonFactory::m_btn19(this);
 	m_btn20 = ButtonFactory::m_btn20(this);
 	m_btn21 = ButtonFactory::m_btn21(this);
-
 }
 
 Main::~Main()
@@ -65,7 +78,8 @@ Main::~Main()
 
 void Main::OnButtonClicked(wxCommandEvent& event)
 {
-	
+	CalculatorPocessor* processor = CalculatorPocessor::GetInstance();
+
 	int id = event.GetId();
 	switch (id)
 	{
@@ -75,71 +89,212 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 
 	case 1002:
 		m_txt1->AppendText("HEX");
+		m_txt1->Clear();
+		result = processor ->ToHexidecimalString(num1);
+		m_txt1->AppendText(result);
+
 		break;
 	case 1003:
 		m_txt1->AppendText("BIN");
+		result = processor->ToHexidecimalString(num1);
+		m_txt1->AppendText(result);
 		break;
 	case 1004:
 		//m_txt1->AppendText("CE");
 		m_txt1->Clear();
+		num1 = 0;
+		num2 = 0;
+		sym = ' ';
 			break;
 	case 1005:
+		solve = false;
 		m_txt1->AppendText("+-");
+		result = processor->negative(num1);
+
+		sym = '+-';
+
 		break;
 
 	case 1006:
 		m_txt1->AppendText("7");
+		Solve();
+		store += '7';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 7;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 7;
+		}
 		break;
 
 	case 1007:
+
 		m_txt1->AppendText("8");
+		Solve();
+		store += '8';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 8;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 8;
+		}
 		break;
 	case 1008:
 		m_txt1->AppendText("9");
+		Solve();
+		store += '9';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 9;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 9;
+		}
 		break;
 	case 1009:
+		solve = false;
 		m_txt1->AppendText("+");
+		sym = '+';
+
 		break;
 	case 10010:
 		m_txt1->AppendText("4");
+		Solve();
+		store += '4';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 4;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 4;
+		}
 		break;
 
 	case 10011:
 		m_txt1->AppendText("5");
+		Solve();
+		store += '5';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 5;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 5;
+		}
 		break;
 
 	case 10012:
 		m_txt1->AppendText("6");
+		Solve();
+		store += '6';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 6;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 6;
+		}
 		break;
 	case 10013:
+		solve = false;
 		m_txt1->AppendText("-");
+		sym = '-';
+
 		break;
 	case 10014:
 		m_txt1->AppendText("1");
+		Solve();
+		store += '1';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 1;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 1;
+		}
 		break;
 	case 10015:
 		m_txt1->AppendText("2");
+		Solve();
+		store += '2';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 2;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 2;
+		}
+
 		break;
 
 	case 10016:
 		m_txt1->AppendText("3");
+		Solve();
+		store += '3';
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 3;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 3;
+		}
 		break;
 
 	case 10017:
+		solve = false;
 		m_txt1->AppendText("*");
+		sym = '*';
+		store = ' ';
+
+
 		break;
 	case 10018:
 		m_txt1->AppendText("0");
+		Solve();
+		if (sym == ' ')
+		{
+			num1 = (num1 * 10) + 0;
+		}
+		else
+		{
+			num2 = (num2 * 10) + 0;
+		}
 		break;
 	case 10019:
+		solve = false;
 		m_txt1->AppendText("%");
+		sym = '%';
+
+		store = ' ';
+
 		break;
 	case 10020:
-		m_txt1->AppendText("=");
+		m_txt1->Clear();
+		sym = processor->ToOperatorString(num1, num2, sym);
+		m_txt1->AppendText(std::to_string(results));
+		sym = '=';
+		num1 = results;
+		num2 = 0;
+		solve = true;
+
 		break;
 
 	case 10021:
+		solve = false;
 		m_txt1->AppendText("/");
+		sym = '/';
+		store = ' ';
 		break;
 
 	}
@@ -152,4 +307,14 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 void Main::BindButton(wxButton* button)
 {
 	button->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &Main::OnButtonClicked, this);
+}
+
+void Main::Solve()
+{
+	if (solve ==true)
+	{
+		num1 = 0;
+		m_txt1->Clear();
+	}
+	solve = false;
 }
