@@ -109,9 +109,7 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	case 1005:
 		solve = false;
 		m_txt1->AppendText("+-");
-		sym = processor->ToOperatorString(m_txt1, num1, sym);
-
-		//result = processor->negative(num1);
+		result = processor->negative(num1);
 
 		sym = '+-';
 
@@ -161,7 +159,6 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	case 1009:
 		solve = false;
 		m_txt1->AppendText("+");
-		sym = processor->ToOperatorString(m_txt1, num1, sym);
 		sym = '+';
 
 		break;
@@ -209,7 +206,6 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	case 10013:
 		solve = false;
 		m_txt1->AppendText("-");
-		sym = processor->ToOperatorString(m_txt1, num1, sym);
 		sym = '-';
 
 		break;
@@ -256,9 +252,8 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 		break;
 
 	case 10017:
-		solve = false;
+		solve = true;
 		m_txt1->AppendText("*");
-		sym = processor->ToOperatorString(m_txt1, num1, sym);
 		sym = '*';
 		//store = ' ';
 
@@ -279,7 +274,6 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	case 10019:
 		solve = false;
 		m_txt1->AppendText("%");
-		sym = processor->ToOperatorString(m_txt1, num1, sym);
 		sym = '%';
 
 		//store = ' ';
@@ -299,14 +293,11 @@ void Main::OnButtonClicked(wxCommandEvent& event)
 	case 10021:
 		solve = false;
 		m_txt1->AppendText("/");
-		sym = processor->ToOperatorString(m_txt1, num1, sym);
 		sym = '/';
 		//store = ' ';
 		break;
 
 	}
-	if (m_txt1->GetLineText(0).ToStdString() == "")
-		*m_txt1 << "";
 	
 	event.Skip();
 }

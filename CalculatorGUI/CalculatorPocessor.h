@@ -27,7 +27,7 @@ public:
 	void Numbers(int number);
 	std::string ToBinaryString(int number);
 	std::string ToHexidecimalString(int number);
-	float ToOperatorString(int num1, int num2, char sym);
+	float ToOperatorString(wxTextCtrl* m_txt1, char number, char sym);
 	int negative(int number);
 
 

@@ -99,22 +99,22 @@ float CalculatorPocessor::ToOperatorString(wxTextCtrl* m_txt1,char number, char 
 	case' ':
 		num1 = num2;
 		break;
-	case 1009:
-		num1 += num2;
+	case '+':
+		results = num1 + num2;
 		break;
-	case 10017:
-		num1 *= num2;
+	case '*':
+		results = num1 * num2;
 		break;
-	case 10013:
-		num1 -= num2;
+	case '-':
+		results = num1 - num2;
 		break;
-	case 10021:
-		num1 /= num2;
+	case '/':
+		results = num1 / num2;
 		break;
-	case  10019:
-		num1 %= num2;
+	case  '%':
+		results = (int)num1 % (int)num2;
 		break;
-	case1005:
+	case'+-':
 		if (solve)
 		{
 			if (num1>=num2)
